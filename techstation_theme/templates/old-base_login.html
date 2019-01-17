@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>T-assistant </title>
+	<meta name="generator" content="frappe">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/techstation_theme/img/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/assets/techstation_theme/img/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/assets/techstation_theme/img/favicon-16x16.png">
+	<link rel="manifest" href="/assets/techstation_theme/img/site.webmanifest">
+	<link rel="mask-icon" href="/assets/techstation_theme/img/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#00aba9">
+	<meta name="theme-color" content="#ffffff">
+	{%- block head -%}
+
+	{%- block style %}{%- endblock -%}
+	{%- endblock -%}
+	<script>
+		window.frappe = {};
+		frappe.ready_events = [];
+		frappe.ready = function(fn) {
+			frappe.ready_events.push(fn);
+		}
+		window.dev_server = {{ dev_server }};
+	</script>
+</head>
+<body data-path="{{ path }}">
+	<div class="main-section">
+		<div>
+
+			<div class="hero-and-content">
+
+				<div class="container">
+					{% block content %}{% endblock %}
+				</div>
+			</div>
+			{%- if footer is defined -%}
+			<footer class="page-footer">
+				<div class="container">
+					{{ footer }}
+				</div>
+			</footer>
+			{%- endif -%}
+		</div>
+		<div>
+
+		</div>
+	</div>
+	{% block base_scripts %}
+	<!-- js should be loaded in body! -->
+	<script type="text/javascript"
+	src="/assets/frappe/js/lib/jquery/jquery.min.js"></script>
+	<script type="text/javascript"
+	src="/assets/js/frappe-web.min.js"></script>
+	{% endblock %}
+	{%- if js_globals is defined %}
+	<script>
+		{%- for key, value in js_globals.iteritems() %}
+		window.{{ key }} = "{{ value[0] }}";
+		{%- endfor -%}
+	</script>
+	{% endif -%}
+
+	{%- block script %}{%- endblock %}
+
+	<!-- csrf_token -->
+
+	{%- block body_include %}{{ body_include or "" }}{% endblock -%}
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+    <script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="./js/modernizr.js"></script>
+    
+    <!-- css -->
+    <link rel="stylesheet" type="text/css" href="./css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/flexboxgrid.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/simple-line-icons.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+  </head>
+  <body>
+    
+    <main class="main_container">
+      <section class="section section_right active">
+         <div class="section_right_inner color2" id="signIn">
+          <a href="#" class="logo"><img src="./images/logo.png" alt="techstation"></a>
+
+          <form>
+            <div class="form_group">
+              <input type="email" class="form_group_input" placeholder="Email" name="doemail" id="doemail">
+            </div>
+
+            <div class="form_group pos-r">
+              <input type="password" class="form_group_input" placeholder="Password" name="dopass" id="dopass">
+              <button type="button" id="showPassword"><i class="icon-eye"></i></button>
+            </div>
+
+            <div class="checkbox pos-r">
+              <input type="checkbox" id="rem_check" class="checkbox_input">
+              <label for="rem_check" class="checkbox_control"></label>
+              <label for="rem_check" class="checkbox_description">Remaber Me</label>
+            </div>
+
+
+            <button type="submit" class="btn"><span>Login</span></button>
+            <a href="#" class="btn_link" data-modal="#reset_pass">Forget Password?</a>
+          </form>
+        </div>
+
+        <div class="section_right_inner color1" id="createAccount">
+          <a href="#" class="logo"><img src="./images/logo.png" alt="techstation"></a>
+
+          <form id="reg_form">
+            <div class="form_group">
+              <input type="email" class="form_group_input" placeholder="Email" name="doemail_reg">
+            </div>
+
+            <div class="form_group">
+              <input type="text" class="form_group_input" placeholder="Username" name="dousername_reg">
+            </div>
+
+            <div class="form_group pos-r">
+              <input type="password" class="form_group_input" placeholder="Password" name="dopass_reg">
+              <button type="button" id="showPassword"><i class="icon-eye"></i></button>
+            </div>
+
+            <button type="submit" class="btn"><span>Create Account</span></button>
+          </form>
+        </div>
+
+        <ul class="tabs">
+          
+          <li><a href="#signIn"><i class="icon-login"></i> <span>Sign In</span></a></li>
+
+          <li><a href="#createAccount"><i class="icon-user-follow"></i> <span>Create Account</span></a></li>
+
+        </ul>
+
+        <div class="sessions_panel active">
+          <h1>Recent logins</h1>
+          <ul class="sessions_list">
+            <li>
+              <a href="#" data-modal="#fast_password_modal">
+                <img src="./images/man-1.jpg" alt="username">
+                <h4>Ahmed</h4>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" data-modal="#fast_password_modal">
+                <img src="./images/man-1.jpg" alt="username">
+                <h4>Ahmed</h4>
+              </a>
+            </li>
+
+            <li>
+              <a href="#addAccount">
+                <i class="icon-plus"></i>
+                <h4 class="hidden_small"></h4>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="copyright">
+          <span>powered by <a href="#" class="poweredBy_techstation" data-modal="#contact_modal">Techstation</a></span>
+        </div>
+      </section>
+
+      <section class="section section_left">
+        <div class="section_left_inner">
+          <h1>Lorem Ipsum</h1>
+          <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+          <ul class="social_list">
+            <li><a href="#"><i class="icon-social-facebook"></i></a></li>
+            <li><a href="#"><i class="icon-social-twitter"></i></a></li>
+            <li><a href="#"><i class="icon-social-youtube"></i></a></li>
+            <li><a href="#"><i class="icon-social-dribbble"></i></a></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- modals -->
+      <div class="modal_wrapper" id="fast_password_modal">
+        <div class="modal_body">
+          <button class="close pos-a"><span class="close_icon"></span></button>
+          <img src="./images/man-1.jpg" alt="username">
+          <h1>Ahmed</h1>
+
+          <form id="fast_pass">
+            <div class="form_group">
+              <input type="password" class="form_group_input" placeholder="password...">
+            </div>
+          </form>
+
+          <div class="buttons">
+            <button form="fast_pass" type="submit">Sign In</button>
+          </div>
+        </div>
+      </div> 
+
+
+      <div class="modal_wrapper" id="reset_pass">
+        <div class="modal_body lg">
+          <button class="close"><span class="close_icon"></span></button>
+          <form id="reset_pass_form">
+            <div class="form_group">
+              <small>put your email to send new password</small>
+              <input type="email" class="form_group_input" placeholder="Email...">
+            </div>
+          </form>
+
+          <div class="buttons">
+            <button form="reset_pass_form" type="submit">Reset</button>
+          </div>
+        </div>
+      </div> 
+
+      <div class="modal_wrapper" id="contact_modal">
+        <div class="modal_body lg">
+          <button class="close"><span class="close_icon"></span></button>
+
+          <ul class="contact_list">
+            <p>Keep In Touch</p>
+
+            <li class=""><a href="tel:+0000000000"><i class="icon-call-out"></i> +2-01222212810</a></li>
+            <li><a href="mailto:admin@admin.com"><i class="icon-envelope-letter"></i> info@techstation.com.eg</a></li>
+            <li class=""><a href="https://www.facebook.com/TechstationApps/"><i class="icon-social-facebook"></i> Facebook</a></li>
+            <li><a href="https://twitter.com/OfficialPage_TS"><i class="icon-social-twitter"></i> Twitter</a></li>
+          </ul>
+
+          <!-- <form id="contact_form">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form_group">
+                  <input type="text" class="form_group_input" placeholder="Your Name...">
+                </div>
+              </div>
+              
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form_group">
+                  <input type="email" class="form_group_input" placeholder="Email...">
+                </div>
+              </div>
+              
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form_group">
+                  <input type="text" class="form_group_input" placeholder="Phone Number...">
+                </div>
+              </div>
+              
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form_group">
+                  <input type="text" class="form_group_input" placeholder="Company Name...">
+                </div>
+              </div>
+              
+              <div class="col-xs-12">
+                <div class="form_group">
+                  <textarea cols="30" rows="10" class="form_group_input" placeholder="Your Message..."></textarea>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <div class="buttons">
+            <button form="contact_form" type="submit">send</button>
+          </div> -->
+        </div>
+      </div>  
+    </main>
+
+    <!-- js -->
+    <script type="text/javascript" src="./js/script.js"></script>
+  </body>
+</html>

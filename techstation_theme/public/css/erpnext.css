@@ -1,0 +1,31 @@
+body[data-route="pos"] .form-section-heading {
+    padding: 10px;
+}
+
+body[data-route="pos"] .item-cart-items {
+    background-color: white;
+}
+
+@media (max-width: 767px){
+body[data-route="pos"] .item-cart-items {
+    height: 25vh;
+    }
+}
+
+body[data-route="pos"] .item-list {
+    background-color: #ffffff;
+}
+
+body[data-route="pos"] .pos-bill-toolbar {
+    padding: 9px 0px;
+    height: 46px !important;
+}
+
+body[data-route="pos"] .pos-bill-toolbar {
+    margin-top: 10px !important;
+}
+
+.num-col.brand-primary {
+    background-color: #009cde !important;
+    color: #ffffff;
+}

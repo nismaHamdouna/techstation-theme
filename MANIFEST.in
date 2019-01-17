@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include techstation_theme *.css
+recursive-include techstation_theme *.csv
+recursive-include techstation_theme *.html
+recursive-include techstation_theme *.ico
+recursive-include techstation_theme *.js
+recursive-include techstation_theme *.json
+recursive-include techstation_theme *.md
+recursive-include techstation_theme *.png
+recursive-include techstation_theme *.py
+recursive-include techstation_theme *.svg
+recursive-include techstation_theme *.txt
+recursive-exclude techstation_theme *.pyc

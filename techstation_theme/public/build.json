@@ -1,0 +1,18 @@
+{
+	"css/techstation.min.css": [
+		"public/css/techstation.css",
+		"public/css/form.css",
+		"public/css/module.css",
+		"public/css/erpnext.css"
+	],
+	"js/techstation.min.js": [
+		"public/js/techstation.js",
+		"public/js/loader.html",
+		"public/js/search.html",
+		"public/js/ser.html"
+
+	],
+	"css/techstation-rtl.css": [
+		"public/css/rtl.css"
+	]
+}
