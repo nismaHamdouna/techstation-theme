@@ -1,282 +1,113 @@
-{% extends "templates/web_login.html" %}
-
-{% block style %}
+<!DOCTYPE html>
+<html lang="en">
+<!-- Head -->
+<head>
+  <meta charset="utf-8" />
+  <meta name="author" content="Osama-Bakri" />
+  <meta name="description" content="Here is a precise description of my awesome webpage." />
+  <meta name="theme-color" content="#efdab9" />
+  <!-- Mobile Stuff -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+  <!-- Bootstrap CSS -->
 <style>
-
-{% include "templates/includes/login/login.css" %}
-{% include "templates/includes/login/css/normalize.css" %}
-{% include "templates/includes/login/css/flexboxgrid.css" %}
-{% include "templates/includes/login/css/style.css" %}
-{% include "templates/includes/login/css/simple-line-icons.css" %}
-{% include "templates/includes/login/css/font-awesome.min.css" %}
+	{% include "public/css/bootstrap.css" %}
+	{% include "public/css/s-login.css" %}
 
 </style>
-{% endblock %}
+<script>
+		window.frappe = {};
+		frappe.ready_events = [];
+		frappe.ready = function(fn) {
+			frappe.ready_events.push(fn);
+		}
+		window.dev_server = {{ dev_server }};
+	</script>
+
+  
+  <title>Login</title>
+</head>
+
+<body>
+
+ <div class="content">
+    <div class="container">
+        <form class="mx-auto text-center">
+            <div class="logo">
+              <img src="/assets/techstation_theme/images/logo.png" class="img-fluid" alt="logo">              
+            </div>
+            <!-- input group -->
+            <div class="i-g text-left error_user" style="display:none;">
+                <div class="alert-r" ><img src="/assets/techstation_theme/images/danger.svg" class="img-fluid mr-2" alt="alert"><p class="mb-0">Username not valid</p></div>
+              </div>
+ <div class="i-g text-left error_pass" style="display:none;">
+                <div class="alert-r" ><img src="/assets/techstation_theme/images/danger.svg" class="img-fluid mr-2" alt="alert"><p class="mb-0"> Incorrect Password.</p></div>
+              </div>
+              <!-- input group -->
+              <div class="i-g mail">
+                <input type="text" id="login_email" placeholder="Email or phone number">
+              </div>
+              <!-- input group -->
+              <div class="i-g user" style="display:none;">
+                <div class="email"></div>
+                <button class="ch-btn">Change</button>
+              </div>
+              <!-- input group -->
+              <div class="i-g pass-f" style="display:none;">
+                <input id="login_password" type="password" placeholder="Password">
+                <button type="button" class="pass-btn">Show</button>
+              </div>
+              <!-- input group -->
+              <div class="i-g next">
+                <button type="button" class="l-b btn-next">next</button>
+              </div>      
+              <!-- input group -->
+              <div class="i-g login">
+                <button class="l-b btn-login" style="display:none;">LogIn</button>
+              </div>      
+              <!-- input group -->
+              <div class="i-g">
+                <a href="/reset" class="t-a">Having trouble logging in?</a>
+              </div>      
+          </form>
+    </div>
+  </div>
+  <!-- login footer -->
+  <div class="login-footer">
+    <div class="container">
+      <ul class="m-0 p-0">
+        <li><a href="">contact us</a></li>
+        <li><a href="">privacy</a></li>
+        <li><a href="">legal</a></li>
+        <li><a href="">about us</a></li>
+      </ul>
+    </div>
+  </div>
+	
+
+
+
+	<script type="text/javascript"
+		src="/assets/frappe/js/lib/jquery/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.slim.js"></script>
+	<script type="text/javascript"
+		src="/assets/js/frappe-web.min.js"></script>
+	<script type="text/javascript"
+		src="/assets/frappe/js/lib/bootstrap.min.js"></script>
+
+    {%- if js_globals is defined %}
+    <script>
+    {%- for key, value in js_globals.iteritems() %}
+    window.{{ key }} = "{{ value[0] }}";
+    {%- endfor -%}
+    </script>
+    {% endif -%}
+
+	<script>{% include "public/js/popper.js" %}</script>
+	<script>{% include "templates/includes/login/login.js" %}</script>
+	<script>{% include "templates/includes/login/script.js" %}</script>
+
+</body>
+<!-- Body -->
+</html>
 
-{% block page_content %}
-
-
-<main class="main_container">
-	<section class="section section_right active">
-		<div class="section_right_inner color2 form-signin form-login" id="signIn">
-			<a href="#" class="logo"><img src="/assets/techstation_theme/img/login.png" alt="techstation"></a>
-
-			<form autocomplete="off">	
-				<div class="form_group mandatory">
-					<input type="text" class="form_group_input input_mandatory" placeholder="Enter your username or email" name="doemail" id="login_email" readonly onfocus="if (this.hasAttribute('readonly')) { this.removeAttribute('readonly');
-// fix for mobile safari to show virtual keyboard
-this.blur();    this.focus();  }">
-
-<div class="alert-signin" id="alert_email" style="display:none;">
-	<span class="closebtn" onclick="this.parentElement.style.display='none';" >&times;</span> 
-	Enter a valid Email or Username
-</div>
-
-</div>
-
-<div class="form_group pos-r" style="display:none;" id="pass_group">
-	<input type="password" class="form_group_input" placeholder="Password" name="dopass" id="login_password" readonly onfocus="if (this.hasAttribute('readonly')) { this.removeAttribute('readonly');
-// fix for mobile safari to show virtual keyboard
-this.blur();    this.focus();  }">
-
-<div class="alert-signin" id="alert_pass" style="display:none;">
-	<span class="closebtn"  onclick="this.parentElement.style.display='none';">&times;</span> 
-	Wrong password. Try again or click Forgot password.
-</div>
-
-</div>
-
-<div class="checkbox pos-r">
-	<input type="checkbox" id="rem_check" class="checkbox_input">
-	<label for="rem_check" class="checkbox_control" id="remaber_check"></label>
-	<label for="rem_check" class="checkbox_description">Remaber Me</label>
-</div>
-
-<button type="submit" class="btn btn-login" id="login_btn"><span>Sign in</span></button>
-<a href="#" class="btn_link" id="forget_btn" data-modal="#reset_pass" style="display:none;">Forgot Password?</a>
-</form>
-
-</div>
-
-<div class="section_right_inner color1 for-signup hiding-element" id="createAccount">
-	<a href="#" class="logo"><img src="/assets/techstation_theme/img/login.png" alt="techstation"></a>
-
-	<div class="signup_text">
-		<h1>Create a new account</h1>
-		<p>It's free and always will be.</p>
-	</div>
-
-	<form class="form-signup" autocomplete="off">
-
-		<div class="form-group row">
-			<div class="col-xs-6">
-				<input type="text" class="form_group_input" id="signup_fullname" placeholder="First name" name="dousername_reg" autocomplete="off">
-			</div>
-
-			<div class="col-xs-6">
-				<input type="text" class="form_group_input" id="signup_lastname" placeholder="Last name" name="dousername_reg">
-			</div>
-		</div>
-
-				<!--<div class="form_group">
-					<input type="text" class="form_group_input" id="signup_fullname" placeholder="Fullname" name="dousername_reg" autocomplete="off" readonly
-					onfocus="this.removeAttribute('readonly');">
-				</div>-->
-
-				<div class="form_group mandatory">
-					<input type="email" class="form_group_input" id="signup_email" placeholder="Email address" name="doemail_reg" autocomplete="off">
-
-					<div class="alert-signup">
-						<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-						Someone already has that email.
-					</div>
-
-					<div class="alert-signup">
-						<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-						Your email address is invalid
-					</div>
-
-				</div>
-
-				<div class="form_group mandatory">
-					<input type="text" class="form_group_input" id="" placeholder="Mobile" name="" autocomplete="off">
-
-					<div class="alert-signup">
-						<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-						Invalid phone number
-					</div>
-
-				</div>
-
-				<div class="form_group pos-r mandatory">
-					<input type="password" class="form_group_input" placeholder="Password" name="dopass_reg" autocomplete="off">
-
-					<div class="alert-signup">
-						<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-						Short passwords are easy to guess. Try one with at least 8 characters.
-
-					</div>
-
-				</div>
-
-				<button type="submit" class="btn btn-signup"><span>Sign up</span></button>
-			</form>
-		</div>
-
-		<!--<ul class="tabs">
-
-			<li><a href="#signIn"><i class="icon-login"></i> <span>SIGN IN</span></a></li>
-			<li><a href="#createAccount" class="not-active" ><i class="icon-user-follow"></i> <span>SIGN UP</span> </a></li>
-
-		</ul>-->
-
-		<div class="sessions_panel">
-			<h1>Recent logins</h1>
-			<p>Click your picture or add an account.</p>
-			<ul class="sessions_list">
-				<li>
-					<button class="close pos-a"><span class="close_icon close_recent"></span></button>
-					<a href="#" data-modal="#fast_password_modal">
-						<img src="/assets/techstation_theme/img/gender/male.jpg" alt="username" id="usr_img">
-					</a>
-					<h4 name='last_login'></h4>
-				</li>
-
-
-				<li class="hide-item-less-991">
-					<a href="#addAccount">
-						<i class="icon-plus"></i>
-					</a>
-					<h4>Add account</h4>
-
-					<!--<a href="#addAccount">
-						<i class="icon-plus"></i>
-						<h4 class="hidden_small"></h4>
-					</a>-->
-				</li>
-
-			</ul>
-		</div>
-
-
-
-
-	</section>
-
-	<section class="section section_left">
-		<div class="section_left_inner">
-			<!-- The owner of the system -->
-			<h1>T-assistant <strong>ERP</strong></h1>
-			<p>Enterprise resource planning</p>
-			<ul class="social_list">
-				<li><a href="https://www.facebook.com/TechstationEgypt/"><i class="icon-social-facebook"></i></a></li>
-				<li><a href="https://twitter.com/OfficialPage_TS"><i class="icon-social-twitter"></i></a></li>
-				<li><a href="https://www.techstation.com.eg/"><i class="icon-social-dribbble"></i></a></li>
-			</ul>
-		</div>
-	</section>
-
-		<div class="copyright">
-			<span>powered by <a href="#" class="poweredBy_techstation" data-modal="#contact_modal">Techstation</a></span>
-
-		</div>
-
-		<div class="business_owner">
-			<span class="business_owner_txt"> {{ company }} </span>
-
-		</div>
-
-	<!-- modals -->
-	<div class="modal_wrapper" id="fast_password_modal">
-		<div class="modal_body form_fast">
-			<button class="close pos-a"><span class="close_icon"></span></button>
-			<img src="/assets/techstation_theme/img/man1.jpg" alt="username" id="fast_img">
-
-			<form>
-				<input type="text" class="form_group_input" id="fast_login_email1" style="display:none;">
-				<h1 name="fast_login_email" id="fast_login_email"></h1>
-				<div class="form_group mandatory">
-					<input type="password" class="form_group_input" id="fast_password" placeholder="Password" readonly onfocus="if (this.hasAttribute('readonly')) { this.removeAttribute('readonly');
-// fix for mobile safari to show virtual keyboard
-this.blur();    this.focus();  }">
-
-<div class="alert-signin" id="alert_fast" style="display:none;">
-	<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-	Wrong password. Try again or click Forgot password.
-	<a href="#" class="" data-modal="#reset_pass">Forgot Password?</a>
-</div>
-</div>
-
-				<!--<div class="checkbox pos-r">
-					<input type="checkbox" id="" class="checkbox_input">
-					<label for="rem_check" class="checkbox_control" id=""></label>
-					<label for="rem_check" class="checkbox_description">Remember password</label>
-				</div>-->
-
-				<div class="buttons">
-					<button id="fast_login_btn" type="submit" class="btn btn-login">Sign in</button>
-				</div>
-			</form>
-
-		</div>
-	</div> 
-
-	<div class="modal_wrapper" id="reset_pass">
-		<div class="modal_body lg">
-			<button class="close"><span class="close_icon"></span></button>
-			<form class="form-forgot" id="reset_pass_form">
-				<div class="form_group mandatory">
-
-					<small id="forget_msg">Enter your email address below and we'll send you a link to reset your password.</small>
-					<small  style="display:none;" id="alert_success" class="alert-success">Please check your email shortly for a link to reset your password.</small>
-
-					<input type="email" class="form_group_input" id="forgot_email" placeholder="Enter your email">
-
-					<div class="alert-signin"  style="display:none;" id="alert_forget">
-						<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-						Your email address is invalid
-					</div>
-
-				</div>
-			</form>
-
-			<div class="buttons">
-				<button form="reset_pass_form" type="submit">Send reset link</button>
-			</div>
-		</div>
-	</div> 
-
-	<div class="modal_wrapper" id="contact_modal">
-		<div class="modal_body lg">
-			<button class="close"><span class="close_icon"></span></button>
-
-			<ul class="contact_list">
-				<p>Keep In Touch</p>
-
-				<li class=""><a href="tel:+201222212810"><i class="icon-call-out"></i> +2-01222212810</a></li>
-				<li><a href="mailto:info@techstation.com.eg"><i class="icon-envelope-letter"></i> info@techstation.com.eg</a></li>
-				<li class=""><a href="https://www.facebook.com/TechstationEgypt/"><i class="icon-social-facebook"></i> Facebook</a></li>
-				<li><a href="https://twitter.com/OfficialPage_TS"><i class="icon-social-twitter"></i> Twitter</a></li>
-			</ul>
-
-		</div>
-	</div>  
-</main>
-
-{% endblock %}
-
-{% block script %}
-
-<!--
-<script>{% include "protection/backspace.js" %}</script>
-<script>{% include "protection/copyright.js" %}</script>
-<script>{% include "protection/protection.js" %}</script>
--->
-
-<script>{% include "templates/includes/login/login.js" %}</script>
-
-<script type="text/javascript" src="/assets/techstation_theme/js/login/script.js"></script>
-
-{% endblock %}
-
-{% block sidebar %}{% endblock %}

@@ -7,9 +7,7 @@
 	],
 	"js/techstation.min.js": [
 		"public/js/techstation.js",
-		"public/js/loader.html",
-		"public/js/search.html",
-		"public/js/ser.html"
+		"public/js/loader.html"
 
 	],
 	"css/techstation-rtl.css": [

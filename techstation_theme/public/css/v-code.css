@@ -1,0 +1,116 @@
+
+/* Start Box */
+.box {
+  margin-top: 140px;
+}
+.box form {
+  background: #fff;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  padding: 20px;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+/* Form Head */
+.box form .form-head {
+  position: relative;
+}
+.box form .form-head h3 {    
+  font-size: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  color: #2c2d2e;
+}
+.box form .form-head p {
+  font-size: 14px;
+  color: #2c2d2e;
+}
+p.alert-p {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #c72e2e;
+  font-weight: bold;
+  border: 1px solid #c72e2e;
+  border-radius: 4px;
+  height: 44px;
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 15px;
+  background-color: #fff7f7;
+}
+/* Form Body */
+form .form-body {
+  display: flex;
+  align-items: center;
+  margin: 25px 0;
+}
+form .form-body input {
+  width: 150px;
+  height: 50px;
+  box-shadow: none !important;
+  outline-color: none;
+  font-size: 24px;
+  transition:  border-color .3s ease;
+}
+form .form-body input:focus {
+  border-color: #0070ba;
+}
+form .form-body .t-c p {
+  font-size: 14px;
+  font-family: sans-serif !important;
+  font-weight: bold;
+  color: #232f3e;
+}
+form .form-body .t-c small {
+  font-size: 14px;
+  color: #232f3e;
+}
+/* Form Footer */
+form .form-footer {
+  margin: 0 -20px -20px;
+  padding: 10px;
+  background-color: #F7F9FA;
+}
+form .form-footer a {
+  font-size: 14px;
+  color: #0070ba;
+}
+form .form-footer button {
+  width: 90px;
+  min-height: 36px;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #fff;
+  background: #0070ba;
+  font-size: 15px;
+  outline: none;
+  text-transform: capitalize;
+  transition: background .3s ease;
+}
+form .form-footer button:first-child {
+  background: #0070ba;    
+  color: #fff;
+}
+form .form-footer button:first-child:hover {
+  background: #005ea6;    
+}
+form .form-footer button:last-child {
+  background: #E1E7EB;
+  color: #232f3e;
+}
+form .form-footer button:last-child:hover {
+  background: #d2dbe1;
+}
+/* Start Media Query */
+@media (max-width: 576px) {
+  form .form-body {
+      display: block;
+  }
+  form .form-body input {
+      margin-bottom: 15px;
+  }
+}

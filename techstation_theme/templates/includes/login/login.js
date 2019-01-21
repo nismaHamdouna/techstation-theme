@@ -10,33 +10,10 @@ window.verify = {};
 login.bind_events = function() {
 	$(window).on("hashchange", function() {
 		login.route();
-	//console.log(localStorage);
 	});
 
 
-	
-	$("#fast_password").on("input", function(event) {
-		document.getElementById("fast_login_btn").disabled = false;
-
-	});
-
-	$("#forgot_email").on("input", function(event) {
-		document.getElementById("forget_login_btn").disabled = false;
-
-	});
-	$("#login_email").on("input", function(event) {
-		document.getElementById("login_btn").disabled = false;
-
-	});
-
-	
-	$(".close_recent").on("click", function(event) {
-		localStorage.removeItem("last_user");
-		$(".sessions_panel").removeClass("active");
-
-	});
-
-	$(".form-login").on("submit", function(event) {
+	$(".btn-login").on("click", function(event) {
 		event.preventDefault();
 		var args = {};
 		args.cmd = "login";
@@ -44,39 +21,11 @@ login.bind_events = function() {
 		args.pwd = $("#login_password").val();
 		args.device = "desktop";
 		if(!args.usr || !args.pwd) {
-			login.set_indicator("{{ _("Both login and password required") }}");
-			//return false;
+			frappe.msgprint("{{ _("Both login and password required") }}");
+			return false;
 		}
-				document.getElementById("login_btn").disabled = true;
-
-
-	 frappe.call({
-		'method': 'techstation_theme.www.login.validate_mail',
-		'args': {
-		      'user': args.usr
-			},
-		callback: function(r){ 
-			if(r.message =='error'){//console.log(r)
-				document.getElementById("alert_email").style.display = "block";
-				//document.getElementById("login_btn").disabled = false;
-				//$("#alert_email").text("{{ _("Valid Login id required.") }}");
-				return false;
-			}
-			else{     
-				document.getElementById("alert_email").style.display = "none";
-				document.getElementById("pass_group").style.display = "block";
-				document.getElementById("forget_btn").style.display = "block";
-				document.getElementById("login_email").disabled = "true";
-				document.getElementById("login_btn").disabled = false;
-
-
-				login.call(args);
-				return false;
-		}
-
-}
-	});
-		
+		login.call(args);
+		return false;
 	});
 
 	$(".form-signup").on("submit", function(event) {
@@ -84,13 +33,12 @@ login.bind_events = function() {
 		var args = {};
 		args.cmd = "frappe.core.doctype.user.user.sign_up";
 		args.email = ($("#signup_email").val() || "").trim();
-		args.redirect_to = get_url_arg("redirect-to") || '';
+		args.redirect_to = frappe.utils.get_url_arg("redirect-to") || '';
 		args.full_name = ($("#signup_fullname").val() || "").trim();
-		if(!args.email || !valid_email(args.email) || !args.full_name) {
+		if(!args.email || !validate_email(args.email) || !args.full_name) {
 			login.set_indicator("{{ _("Valid email and name required") }}", 'red');
 			return false;
 		}
-
 		login.call(args);
 		return false;
 	});
@@ -101,72 +49,13 @@ login.bind_events = function() {
 		args.cmd = "frappe.core.doctype.user.user.reset_password";
 		args.user = ($("#forgot_email").val() || "").trim();
 		if(!args.user) {
-			//$("#alert_forget").text("{{ _("Valid Login id required.") }}")
 			login.set_indicator("{{ _("Valid Login id required.") }}", 'red');
 			return false;
-
-		}
-				document.getElementById("forget_login_btn").disabled = true;
-	frappe.call({
-		'method': 'techstation_theme.www.login.validate_mail',
-		'args': {
-		      'user': args.user
-			},
-		callback: function(r){ 
-			if(r.message =='error'){
-				document.getElementById("alert_forget").style.display = "block";
-				document.getElementById("forget_msg").style.display = "block";
-				document.getElementById("forget_login_btn").disabled = true;
-				return false;
-			}
-			else{     
-				document.getElementById("alert_forget").style.display = "none";
-				document.getElementById("alert_success").style.display = "block";
-				document.getElementById("forget_msg").style.display = "none";
-				document.getElementById("forgot_email").disabled = "true";
-				document.getElementById("forget_login_btn").disabled = false;
-
-				login.call(args);
-				return false;
-		}
-
-}
-	});
-	});
-
-	$(".form_fast").on("submit", function(event) { 
-		//event.preventDefault();
-		var args = {};
-		args.cmd = "login";
-		args.usr = frappe.utils.xss_sanitise(($("#fast_login_email1").val() || "").trim());
-		args.user = $("#fast_login_email").text();
-		args.pwd = $("#fast_password").val();
-
-		args.device = "desktop";
-		if(!args.user) { 
-			document.getElementById("alert_fast").style.display = "block";
-			$("#alert_fast").text("{{ _("Valid Login id required.") }}");
-			return false;
-		}
-			document.getElementById("fast_login_btn").disabled = true;
-		login.call(args);
-		return false;
-	});
-
- 
-	$(".btn-ldap-login").on("click", function(){
-		var args = {};
-		args.cmd = "{{ ldap_settings.method }}";
-		args.usr = ($("#login_email").val() || "").trim();
-		args.pwd = $("#login_password").val();
-		args.device = "desktop";
-		if(!args.usr || !args.pwd) {
-			login.set_indicator("{{ _("Both login and password required") }}", 'red');
-			return false;
 		}
 		login.call(args);
 		return false;
 	});
+
 }
 
 
@@ -208,26 +97,11 @@ login.signup = function() {
 	$(".for-signup").toggle(true);
 }
 
-login.userimg = function(user) {
-	 frappe.call({
-		'method': 'frappe.client.get_value',
-		'args': {
-		      'doctype': 'User',
-		      'fieldname': ['name'],
-		      'filters': {'name': user}
-			},
-	callback: function(r){
-		//console.log( r.message.name);
-}
-	});
-
-}
-
 
 // Login
 login.call = function(args, callback) {
 	login.set_indicator("{{ _('Verifying...') }}", 'blue');
-				
+
 	return frappe.call({
 		type: "POST",
 		args: args,
@@ -249,7 +123,7 @@ login.login_handlers = (function() {
 				data = xhr.responseJSON;
 			}
 
-			var message = default_message; 
+			var message = default_message;
 			if (data._server_messages) {
 				message = ($.map(JSON.parse(data._server_messages || '[]'), function(v) {
 					// temp fix for messages sent as dict
@@ -265,51 +139,27 @@ login.login_handlers = (function() {
 				login.set_indicator(message, 'red');
 			} else {
 				login.reset_sections(false);
-			} 
-			//console.log(data)
-			if(data.message == "Incorrect password"){
-				document.getElementById("alert_pass").style.display = "block";
-				document.getElementById("alert_fast").style.display = "block";
-				//document.getElementById("login_btn").disabled = true;
-				document.getElementById("login_email").disabled = "false";
-				document.getElementById("fast_login_btn").disabled = true;
-				//$("#alert_pass").text("{{ _("Valid Login id required.") }}");
 			}
+			if(data.message == "Incorrect password"){
+						$('.error_pass').css('display','block');
+						
+				
+			}
+
 		};
 	}
 
 	var login_handlers = {
 		200: function(data) {
-				document.getElementById("alert_pass").style.display = "none";
-				document.getElementById("alert_fast").style.display = "none";
-
-			if (document.getElementById("rem_check").checked){
-				//console.log(document.getElementById("rem_check").checked);
-				localStorage.setItem("last_user", frappe.get_cookie("user_id"));
-				localStorage.setItem("usr_img", frappe.get_cookie("user_image"));
-
-				frappe.call({
-				'method': 'frappe.client.get_value',
-				'args': {
-		    		  'doctype': 'User',
-		    		  'fieldname': 'first_name',
-		    		  'filters': {'name': frappe.get_cookie("user_id")}
-					},
-				callback: function(r){console.log(r.message)
-					if(r){ localStorage.setItem("first_name", r.message.first_name);}} });
-				}
-
-			if(data.message =='not found' )
-				{$("#forget_msg").text("{{ _("Not a valid user") }}");	}
 			if(data.message == 'Logged In'){
 				login.set_indicator("{{ _("Success") }}", 'green');
-				window.location.href = get_url_arg("redirect-to") || data.home_page;
+				window.location.href = frappe.utils.get_url_arg("redirect-to") || data.home_page;
 			} else if(data.message=="No App") {
 				login.set_indicator("{{ _("Success") }}", 'green');
 				if(localStorage) {
 					var last_visited =
 						localStorage.getItem("last_visited")
-						|| get_url_arg("redirect-to");
+						|| frappe.utils.get_url_arg("redirect-to");
 					localStorage.removeItem("last_visited");
 				}
 
@@ -334,8 +184,7 @@ login.login_handlers = (function() {
 				}
 
 
-			} 
-				else if(window.location.hash === '#signup') {
+			} else if(window.location.hash === '#signup') {
 				if(cint(data.message[0])==0) {
 					login.set_indicator(data.message[1], 'red');
 				} else {
@@ -349,7 +198,7 @@ login.login_handlers = (function() {
 			if(data.verification && data.message != 'Logged In') {
 				login.set_indicator("{{ _("Success") }}", 'green');
 
-				document.cookie = "tmp_id="+data.tmp_id; 
+				document.cookie = "tmp_id="+data.tmp_id;
 
 				if (data.verification.method == 'OTP App'){
 					continue_otp_app(data.verification.setup, data.verification.qrcode);
@@ -379,30 +228,6 @@ frappe.ready(function() {
 
 	$(".form-signup, .form-forgot").removeClass("hide");
 	$(document).trigger('login_rendered');
-
-
-	//var company = document.location.host;
-	//$(".business_owner_txt").text(company);
-
-	if (localStorage.getItem('last_user')){
-		var user_id;
-		if(localStorage.getItem('first_name') != 'Guest' && localStorage.getItem('first_name') != null)
-			user_id = localStorage.getItem('first_name');
-		else user_id = localStorage.getItem('last_user');
-		$(".sessions_panel").addClass("active");
-		$("[name='last_login']").text(user_id);
-		$("[name='fast_login_email']").text(user_id);
-		$("#fast_login_email1").val(localStorage.getItem('last_user'));
-		if(localStorage.getItem('usr_img')){
-			document.getElementById("usr_img").src = localStorage.getItem('usr_img');
-			document.getElementById("fast_img").src =localStorage.getItem('usr_img');
-		}else {
-			document.getElementById("usr_img").src ='assets/techstation_theme/img/gender/male.jpg';
-			document.getElementById("fast_img").src ='assets/techstation_theme/img/gender/male.jpg';}
-	}
-	else $(".sessions_panel").removeClass("active");
-
-
 });
 
 var verify_token =  function(event) {
