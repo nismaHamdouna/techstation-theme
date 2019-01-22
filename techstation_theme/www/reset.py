@@ -16,4 +16,8 @@ def get_context(context):
 	context.no_header = True
 	context.for_test = 'reset.html'
 	context["title"] = "Reset Password"
+	company = frappe.defaults.get_user_default('company')
+	if not company:
+		company = frappe.db.get_value("Global Defaults", None, "default_company")	
+	context['company']=   company #frappe.db.get_default("company")
 

@@ -35,6 +35,11 @@ def get_context(context):
 
 	if frappe.utils.cint(frappe.get_system_settings("allow_login_using_user_name")):
 		login_name_placeholder.append(_("Username"))
+	company = frappe.defaults.get_user_default('company')
+	if not company:
+		company = frappe.db.get_value("Global Defaults", None, "default_company")	
+	context['company']=   company #frappe.db.get_default("company")
+	frappe.msgprint(company)
 
 	
 	return context

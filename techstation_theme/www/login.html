@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Head -->
+<head>
+  <meta charset="utf-8" />
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#e4e4e4">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#e4e4e4">
+
+  <meta name="robots" content="noindex">
+  <meta name="googlebot" content="noindex">
+
+  <meta name="author" content="Techstation" />
+  <meta name="description" content="Techstation ERP." />
+
+  <!-- Mobile Stuff -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+	
+  <!-- Bootstrap CSS -->
+<style>
+	{% include "public/css/bootstrap.css" %}
+	{% include "public/css/s-login.css" %}
+
+</style>
+
+
+  
+  <title>Login</title>
+</head>
+
+<body>
+
+ <div class="content">
+    <div class="container" style="height: 500px;">
+       <h3> Comming soon </h3>
+    </div>
+  </div>
+          
+
+  <!-- login footer -->
+  <div class="login-footer">
+    <div class="container">
+      <ul class="m-0 p-0">
+        <li><a href="">contact us</a></li>
+        <li><a href="">privacy</a></li>
+        <li><a href="">legal</a></li>
+        <li><a href="">about us</a></li>
+      </ul>
+    </div>
+  </div>
+	
+
+
+
+	<script type="text/javascript"
+		src="/assets/frappe/js/lib/jquery/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.slim.js"></script>
+	<script type="text/javascript"
+		src="/assets/js/frappe-web.min.js"></script>
+	<script type="text/javascript"
+		src="/assets/frappe/js/lib/bootstrap.min.js"></script>
+
+    {%- if js_globals is defined %}
+    <script>
+    {%- for key, value in js_globals.iteritems() %}
+    window.{{ key }} = "{{ value[0] }}";
+    {%- endfor -%}
+    </script>
+    {% endif -%}
+
+	
+</body>
+<!-- Body -->
+</html>
+

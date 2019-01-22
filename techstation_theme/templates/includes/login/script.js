@@ -4,7 +4,7 @@ $('.btn-next').on('click',function(e){
 	frappe.call({
 		type: "POST",
 		args: {email : $('#login_email').val()},
-		method: 'techstation_theme.www.login.validate_mail',
+		method: 'techstation_theme.www.manage.validate_mail',
 		freeze: true,
 		 async: false,
 		callback: function(r){

@@ -119,6 +119,11 @@ width: 100%;
     border-radius: 0px;
   }
 }
+@media (min-width: 767px){
+body {
+    zoom: 125% !important;
+  }
+}
 .company_name {
     margin: 25px auto 0;
 }

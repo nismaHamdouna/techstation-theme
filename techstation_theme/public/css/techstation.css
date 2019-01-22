@@ -11,7 +11,7 @@
     box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
 }
 
-@media (max-width: 767px)
+@media (max-width: 767px){
 .form-control[data-fieldtype="Password"] {
     position: inherit;
     height: 40px;
@@ -22,7 +22,7 @@
     -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
     box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
    }
-
+}
 
 .app-listing {
     display: none !important;
