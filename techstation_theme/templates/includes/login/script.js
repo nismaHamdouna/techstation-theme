@@ -1,3 +1,4 @@
+var status=true;
 $('.btn-next').on('click',function(e){
   e.preventDefault();
 	frappe.call({
@@ -5,6 +6,7 @@ $('.btn-next').on('click',function(e){
 		args: {email : $('#login_email').val()},
 		method: 'techstation_theme.www.login.validate_mail',
 		freeze: true,
+		 async: false,
 		callback: function(r){
 			if(r.message){
 				console.log(r.message);
@@ -17,6 +19,7 @@ $('.btn-next').on('click',function(e){
 						$('.next').css('display','none');
 						$('.error_user').css('display','none');
 						$('.error_pass').css('display','none');
+						status=false;
 				}else{
 				$('.error_user').css('display','block');
 					}
@@ -52,7 +55,29 @@ $('.btn-next').on('click',function(e){
 			$('.pass-f').css('display','none');
 			$('.btn-login').css('display','block');
 			$('.next').css('display','block');
+						status=true;
 			$('.error_user').css('display','none');
 });
-
+		function fromsubmit(e){
+		console.log($('.user').css('display'));
+			if($('.user').css('display')=="none"){
+				$('.mail').css('display','block');
+						$('.user').css('display','none');
+						$('.pass-f').css('display','none');
+						$('.btn-login').css('display','none');
+						$('.next').css('display','block');
+						
+				}	
+				else{
+					$('.mail').css('display','none');
+						$('.user').css('display','block');
+						$('.email').html(r.message.email[0][1]);
+						$('.pass-f').css('display','block');
+						$('.btn-login').css('display','block');
+						$('.next').css('display','none');
+						
+				}
+			return false;
+	
+	};
 

@@ -3,12 +3,21 @@
 <!-- Head -->
 <head>
   <meta charset="utf-8" />
-  <meta name="author" content="Osama-Bakri" />
-  <meta name="description" content="Here is a precise description of my awesome webpage." />
-  <meta name="theme-color" content="#efdab9" />
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#e4e4e4">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#e4e4e4">
+
+  <meta name="robots" content="noindex">
+  <meta name="googlebot" content="noindex">
+
+  <meta name="author" content="Techstation" />
+  <meta name="description" content="Techstation ERP." />
+
   <!-- Mobile Stuff -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="msapplication-tap-highlight" content="no" />
+	
   <!-- Bootstrap CSS -->
 <style>
 	{% include "public/css/bootstrap.css" %}
@@ -32,9 +41,9 @@
 
  <div class="content">
     <div class="container">
-        <form class="mx-auto text-center">
+        <form class="mx-auto text-center login-form" onsubmit="return fromsubmit()">
             <div class="logo">
-              <img src="/assets/techstation_theme/images/logo.png" class="img-fluid" alt="logo">              
+              <img src="/assets/techstation_theme/images/login.png" class="img-fluid" alt="logo">              
             </div>
             <!-- input group -->
             <div class="i-g text-left error_user" style="display:none;">
@@ -45,7 +54,7 @@
               </div>
               <!-- input group -->
               <div class="i-g mail">
-                <input type="text" id="login_email" placeholder="Email or phone number">
+                <input type="text" id="login_email" placeholder="Enter your email address">
               </div>
               <!-- input group -->
               <div class="i-g user" style="display:none;">
@@ -63,15 +72,22 @@
               </div>      
               <!-- input group -->
               <div class="i-g login">
-                <button class="l-b btn-login" style="display:none;">LogIn</button>
+                <button type="button" class="l-b btn-login" style="display:none;">LogIn</button>
               </div>      
               <!-- input group -->
               <div class="i-g">
                 <a href="/reset" class="t-a">Having trouble logging in?</a>
               </div>      
-          </form>
+          </form>        
     </div>
   </div>
+          <div class="company_name text-center">            
+            <h5>Print the company name</h5>
+            <p>All rights reserved, Powered by <a href="https://www.techstation.com.eg/" target="_blank">Techstation.com.eg</a></p>    
+
+
+          </div>  
+
   <!-- login footer -->
   <div class="login-footer">
     <div class="container">

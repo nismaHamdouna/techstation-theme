@@ -42,7 +42,7 @@ jQuery(document).ready(function($) {
 	});
 
 	 $('form').on('submit', function(e) {
-        var isFormValid = true;
+        var isFormValid = true;			
         
         $(this).find('.input_mandatory').each(function() {
             if ($.trim($(this).val()).length == 0){
