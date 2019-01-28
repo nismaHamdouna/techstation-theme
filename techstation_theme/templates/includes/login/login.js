@@ -43,7 +43,7 @@ login.bind_events = function() {
 		return false;
 	});
 
-	$(".form-forgot").on("submit", function(event) {
+	$(".reset-btn").on("click", function(event) {
 		event.preventDefault();
 		var args = {};
 		args.cmd = "frappe.core.doctype.user.user.reset_password";
@@ -145,6 +145,12 @@ login.login_handlers = (function() {
 						
 				
 			}
+			if(data.message == "Password reset instructions have been sent to your email"){
+						$('.success_reset').css('display','block');
+						
+				
+			}
+
 
 		};
 	}

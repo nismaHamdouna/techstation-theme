@@ -21,7 +21,7 @@
   <!-- Bootstrap CSS -->
 <style>
 	{% include "public/css/bootstrap.css" %}
-	{% include "public/css/s-login.css" %}
+	{% include "public/css/manage.css" %}
 
 </style>
 <script>
@@ -34,7 +34,7 @@
 	</script>
 
   
-  <title>Login</title>
+  <title>Manage Portal</title>
 </head>
 
 <body>
@@ -42,16 +42,22 @@
  <div class="content">
     <div class="container">
         <form class="mx-auto text-center login-form" onsubmit="return fromsubmit()">
+
             <div class="logo">
               <img src="/assets/techstation_theme/images/login.png" class="img-fluid" alt="logo">              
             </div>
-            <!-- input group -->
-            <div class="i-g text-left error_user" style="display:none;">
-                <div class="alert-r" ><img src="/assets/techstation_theme/images/danger.svg" class="img-fluid mr-2" alt="alert"><p class="mb-0">Username not valid</p></div>
-              </div>
- <div class="i-g text-left error_pass" style="display:none;">
-                <div class="alert-r" ><img src="/assets/techstation_theme/images/danger.svg" class="img-fluid mr-2" alt="alert"><p class="mb-0"> Incorrect Password.</p></div>
-              </div>
+
+          <!-- head -->          
+          <div class="head text-center">            
+            <h5>Sign in</h5>
+            <p>with your System Account</p>            
+          </div> 
+
+                <!-- alert -->
+                <div class="alert alert-danger text-left error_user" style="display:none;" role="alert">
+                    <strong>Sorry!</strong> Username not valid.
+                </div>
+
               <!-- input group -->
               <div class="i-g mail">
                 <input type="text" id="login_email" placeholder="Enter your email address">
@@ -59,8 +65,13 @@
               <!-- input group -->
               <div class="i-g user" style="display:none;">
                 <div class="email"></div>
-                <button class="ch-btn">Change</button>
+                <button class="ch-btn-change">Change</button>
               </div>
+
+                <div class="alert alert-danger text-left error_pass" style="display:none;" role="alert">
+                    <strong>Sorry!</strong> Password incorrect.
+                </div>
+
               <!-- input group -->
               <div class="i-g pass-f" style="display:none;">
                 <input id="login_password" type="password" placeholder="Password">
@@ -82,7 +93,7 @@
     </div>
   </div>
           <div class="company_name text-center">            
-            <h5>{{company}}</h5>
+            <h5>{% if company %}{{ company  }} {% endif %}</h5>
             <p>All rights reserved, Powered by <a href="https://www.techstation.com.eg/" target="_blank">Techstation.com.eg</a></p>    
 
 

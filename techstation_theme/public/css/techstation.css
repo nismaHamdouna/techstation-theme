@@ -23,7 +23,21 @@
     box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
    }
 }
-
+@media (max-width: 480px){
+.navbar-clear_cache {
+    display: none !important;
+   }
+}
+@media (max-width: 380px){
+li.frappe-chat-dropdown.dropdown {
+    display: none !important;
+   }
+}
+@media (min-width: 991px){
+.avatar-small {
+    display: none;
+   }
+}
 .app-listing {
     display: none !important;
 }
@@ -50,7 +64,9 @@ a[href^="#modules/Learn"] {
 a[href^="#modules/Website"] {
   display:none!important;
 }
-
+a[href^="#marketplace"] {
+  display:none!important;
+}
 .msgprint a.text-muted {
   display: none;
 }
@@ -286,7 +302,10 @@ a.module-link {
 .navbar-default .navbar-nav > li > a, .navbar-default .navbar-brand {
   color: #6c7680 !important;
 }
-
+.navbar .octicon {
+    margin-top: 2px !important;
+    font-size: 22px;
+}
 .navbar .nav > li > a {
     padding: 8px 15px;
     height: 40px;
@@ -808,6 +827,11 @@ input#modal-search {
   padding: 10px 15px;
   height: 65px;
 }
+@media (min-width: 767px){
+#search-modal .modal-header {
+  zoom: 140%;
+   }
+}
 
 #search-modal .octicon {
     margin-top: 0px !important;
@@ -819,7 +843,6 @@ input#modal-search {
     right: 0;
     top: 0;
     z-index: 9;
-    padding: 15px !important;
 }
 
 /**********************************************/
@@ -923,11 +946,9 @@ body[data-route*="Form/Expiry Dates Warning"] .row.layout-main .layout-main-sect
     border-radius: 4px;
 }
 
-.icon-grid .ellipsis {
-    white-space: inherit;
-    overflow: initial;
-    text-overflow: ellipsis;
-    max-width: 100%;
-    vertical-align: middle;
+.panel-default > .panel-heading {
+    color: #333;
+    background-color: #fafafb;
+    border-color: #ced5db;
 }
 

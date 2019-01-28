@@ -12,8 +12,18 @@ no_cache = True
 
 def get_context(context):
 	# get settings from site config
+	
 	context.no_header = True
 	context.for_test = 'index.html'
+	context.title = 'Home'
+	company = frappe.defaults.get_user_default('company')
+	if not company:
+		company = frappe.db.get_value("Global Defaults", "Global Defaults", "default_company")	
+	if not company:
+		company_l= frappe.get_list("Company",['name'])
+		if company_l:
+			company=frappe.get_doc("Company",company_l[0].name)
+	context.company =   company #frappe.db.get_default("company")
 
 	return context
 

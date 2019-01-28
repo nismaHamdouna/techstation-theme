@@ -47,6 +47,16 @@ error_report_email = "support@techstation.com.eg"
 home_page = "index"
 
 
+email_brand_image = "assets/techstation_theme/images/logo.png"
+
+default_mail_footer = """
+	<span>
+		Sent via Techstation Soft
+	</span>
+"""
+
+
+
 # website user home page (by Role)
 # role_home_page = {
 #	"Role": "home_page"
@@ -65,7 +75,7 @@ home_page = "index"
 # ------------
 
 # before_install = "techstation_theme.install.before_install"
-# after_install = "techstation_theme.install.after_install"
+after_install = "techstation_theme.install.after_install"
 
 # Desk Notifications
 # ------------------

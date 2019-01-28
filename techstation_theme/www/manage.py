@@ -12,7 +12,7 @@ no_cache = True
 
 def get_context(context):
 	if frappe.session.user != "Guest" and frappe.session.data.user_type=="System User":
-		frappe.local.flags.redirect_location = "/desk"
+		frappe.local.flags.redirect_location = "desk"
 		raise frappe.Redirect
 
 	# get settings from site config
@@ -37,16 +37,19 @@ def get_context(context):
 		login_name_placeholder.append(_("Username"))
 	company = frappe.defaults.get_user_default('company')
 	if not company:
-		company = frappe.db.get_value("Global Defaults", None, "default_company")	
-	context['company']=   company #frappe.db.get_default("company")
-	frappe.msgprint(company)
+		company = frappe.db.get_value("Global Defaults", "Global Defaults", "default_company")	
+	if not company:
+		company_l= frappe.get_list("Company",['name'])
+		if company_l:
+			company=frappe.get_doc("Company",company_l[0].name)
+	context.company =   company #frappe.db.get_default("company")
 
-	
+
 	return context
 
 @frappe.whitelist(allow_guest=True)
 def validate_mail(email):
-	ee = frappe.db.sql('select  name ,email from tabUser where name=%s',email);
+	ee = frappe.db.sql('select  name ,email from tabUser where enabled= 1 and name=%s',email);
 	if ee:
 		return {"status": "success",
 			"email" : ee

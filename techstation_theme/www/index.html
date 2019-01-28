@@ -1,61 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <!-- Head -->
+
 <head>
-  <meta charset="utf-8" />
-  <!-- Chrome, Firefox OS and Opera -->
-  <meta name="theme-color" content="#e4e4e4">
-  <!-- Windows Phone -->
-  <meta name="msapplication-navbutton-color" content="#e4e4e4">
+    <meta charset="utf-8" />
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#e4e4e4">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#e4e4e4">
 
-  <meta name="robots" content="noindex">
-  <meta name="googlebot" content="noindex">
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="noindex">
 
-  <meta name="author" content="Techstation" />
-  <meta name="description" content="Techstation ERP." />
-
-  <!-- Mobile Stuff -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="msapplication-tap-highlight" content="no" />
-	
-  <!-- Bootstrap CSS -->
-<style>
-	{% include "public/css/bootstrap.css" %}
-	{% include "public/css/s-login.css" %}
-
-</style>
-
-
-  
-  <title>Home</title>
+    <meta name="author" content="Techstation" />
+    <meta name="description" content="Techstation ERP." />
+    <!-- Mobile Stuff -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!-- Bootstrap CSS -->
+    <style>
+        
+            {% include "public/css/bootstrap.css"%}
+            {% include "public/css/virtual_page.css"%}
+        
+    </style>
+    <title>T-Assistant</title>
 </head>
 
 <body>
+    <div class="content">
+        <div class="container">
+            <!-- main contain -->
+            <div class="virtual_page">
+                <div class="mx-auto text-center">
+                    <!-- logo -->
+                    <div class="logo">
+                        <img src="/assets/techstation_theme/images/login.png" class="img-fluid" alt="logo">
+                    </div>
+                    <div class="system_welcome text-center">
+                        <h3>“If you want to be successful, you need to realize that being uncomfortable isn’t bad; it’s just a sign that you’re growing.”</h3>
+                        <p>Please login to continue.</p>
 
- <div class="content">
-    <div class="container" style="height: 500px;">
+                        <!-- button -->
+                        <div class="btn-url">
 
-            <div class="row logo">
-             <h4> Welcome To Techstation ERP </h4>  
-<br/>
-<div class="i-g col-md-6">
-                <a href="/manage" class="btn l-b btn-manage">Management</button>
-              </div>      
-              <!-- input group -->
-              <div class="i-g col-md-6">
-                <a href="/login" class="btn  btn-client" >Client</button>
-              </div>        
+                            <a class="btn btn-primary" href="/manage" role="button">Manage Portal</a>
+                            <a class="btn btn-primary" href="/login" role="button">Client Portal</a>
+
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-              <!-- input group -->
-<div class="row" width="100%" style="margin:20px auto;">
-              
-</div>     
-             
+        </div>
     </div>
-  </div>
- 
+
+    <div class="company_name text-center">
+            <h5>{% if company %}{{ company  }} {% endif %}</h5>
+        <p>All rights reserved, Powered by <a href="https://www.techstation.com.eg/" target="_blank">Techstation.com.eg</a></p>
+    </div>
+
 </body>
 <!-- Body -->
-</html>
 
+</html>

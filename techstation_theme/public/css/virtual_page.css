@@ -1,0 +1,105 @@
+body {
+    background-color: #fff !IMPORTANT;
+
+}
+@media (min-width: 767px){
+body {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-image: url(/assets/techstation_theme/img/background-desktop.svg);
+    background-repeat: repeat-x;
+    background-position: 0 100%;
+    -webkit-background-size: auto 200px !important;
+    background-size: auto 200px !important;
+    background-attachment: fixed !important;
+    overflow: auto;
+   }
+}
+.container {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.virtual_page{
+width: 460px;
+margin: 0;
+padding: 42px 42px 18px;
+/* border-radius: 8px; */
+border: 2px solid #eaeced;
+border-top: none;
+background-color: #ffffff;
+}
+.logo {
+}
+.logo img {
+width: 250px;
+margin: 0 auto 28px;
+}
+.system_welcome {
+}
+.system_welcome h3 {
+font-size: 18px;
+color: #545b62;
+}
+.system_welcome p {
+font-size: 17px;
+color: #2c2d2e;
+}
+.btn-url {
+align-items: center;
+margin: 25px 0 25px;
+}
+.btn-primary {
+    color: #212529;
+    background-color: #f8f9fa;
+    border-color: #ced4da;
+    padding: 10px 15px;
+    margin: 5px;
+    max-height: 44px;
+    font-size: 1em;
+    outline: none;
+    font-weight: bold;
+    line-height: 1.4;
+}
+.btn-primary:hover {
+color: #fff;
+background-color: #0070ba;
+border-color: #009be1;
+}
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+color: #fff;
+background-color: #0070ba;
+border-color: #009be1;
+}
+.company_name {
+margin: 25px auto 0;
+}
+.company_name h5 {
+font-size: 17px;
+font-weight: bold;
+margin-bottom: 5px;
+color: #6c757d;
+}
+.company_name p {
+font-size: 13px;
+font-weight: bold;
+color: #6c757d;
+}
+.company_name a {
+color: #0070ba;
+font-size: 14px;
+text-decoration: none;
+background-color: transparent;
+-webkit-text-decoration-skip: objects;
+}
+@media (min-width: 991px){
+body {
+zoom: 125% !important;
+}
+}
+.not_activated{
+margin: 0 auto;
+padding: 50px 50px 50px;
+}
