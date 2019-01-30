@@ -49,13 +49,16 @@
 
           <!-- head -->          
           <div class="head text-center">            
-            <h5>Sign in</h5>
-            <p>with your System Account</p>            
+            <h5>Sign In to Manage Your Work.</h5>
+            <p>The system provides you stability and safety.</p>            
           </div> 
 
                 <!-- alert -->
                 <div class="alert alert-danger text-left error_user" style="display:none;" role="alert">
                     <strong>Sorry!</strong> Username not valid.
+                </div>
+		<div class="alert alert-danger text-left error_active" style="display:none;" role="alert">
+                    <strong>Sorry!</strong> User is not active.
                 </div>
 
               <!-- input group -->
@@ -92,13 +95,13 @@
           </form>        
     </div>
   </div>
+
           <div class="company_name text-center">            
             <h5>{% if company %}{{ company  }} {% endif %}</h5>
-            <p>All rights reserved, Powered by <a href="https://www.techstation.com.eg/" target="_blank">Techstation.com.eg</a></p>    
-
-
-          </div>  
-
+             <img src="/assets/techstation_theme/img/techstation.png" class="img-fluid" alt="logo"> 
+            <p>All rights reserved, <br> Powered by <a href="https://www.techstation.com.eg/" target="_blank">Techstation.com.eg</a></p>    
+          </div>
+ 
   <!-- login footer -->
   <div class="login-footer">
     <div class="container">

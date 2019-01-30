@@ -54,10 +54,14 @@
 <div class="alert alert-danger error_user" style="display:none;" role="alert">
 	  <strong>Sorry!</strong> Username not valid.
 	</div>
+<div class="alert alert-danger text-left error_active" style="display:none;" role="alert">
+                    <strong>Sorry!</strong> User is not active.
+                </div>
 
 <div class="alert alert-success success_reset" style="display:none;" role="alert">
 	  Password reset instructions have been sent to your email.
 	</div>
+
  
           <!-- body -->
           <div class="body">
@@ -78,10 +82,13 @@
           </div>
         </form>
       </div>
+
           <div class="company_name text-center">            
             <h5>{% if company %}{{ company  }} {% endif %}</h5>
-            <p>All rights reserved, Powered by <a href="https://www.techstation.com.eg/" target="_blank">Techstation.com.eg</a></p>    
-          </div>  
+             <img src="/assets/techstation_theme/img/techstation.png" class="img-fluid" alt="logo"> 
+            <p>All rights reserved, <br> Powered by <a href="https://www.techstation.com.eg/" target="_blank">Techstation.com.eg</a></p>    
+          </div>
+
     </div>
   </div>
   <!-- content -->

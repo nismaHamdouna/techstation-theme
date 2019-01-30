@@ -38,7 +38,11 @@ def validate_mail(email):
 			"email" : ee
 			}
 	else: 
-		return {"status": "error"}
+		m = frappe.db.sql('select  name ,email from tabUser where name=%s',email);
+		if m:
+			return {"status": "in_active"}
+		else:	
+			return {"status": "error"}
 
 
 

@@ -59,16 +59,18 @@ margin-top: 20px;
 .content .m-c form img.user-img {
 width: 100px;
 margin-bottom: 20px;
+display: none;
 }
 .content .m-c form .name {
-width: fit-content;
-display: block;
-font-size: 14px;
-font-weight: bold;
-color: #2c2d2e;
-border-radius: 16px;
-padding: 5px 10px;
-border: 1px solid #dadce0;
+    width: fit-content;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #2c2d2e;
+    border-radius: 5px;
+    padding: 8px 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #dadce0;
 }
 .content .m-c form .body {
 margin-top: 30px;
@@ -146,6 +148,13 @@ zoom: 125% !important;
 }
 .company_name {
 margin: 25px auto 0;
+width: 440px;
+}
+.company_name img {
+width: 90px;
+padding: 10px;
+opacity: .5;
+display: none;
 }
 .company_name h5 {
 font-size: 17px;

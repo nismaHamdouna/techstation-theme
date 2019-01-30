@@ -31,6 +31,15 @@ def after_install():
 		ff.hidden=1
 		ff.flags.ignore_permissions=True
 		ff.save()
+	
+	footer=frappe.get_hooks("default_mail_footer", app_name="techstation_theme")
+	ss = frappe.get_doc("System Settings", "System Settings")
+	ss.email_footer_address = footer[0]
+	ss.flags.ignore_mandatory = True
+	ss.save()
+
+
+
 
 
 

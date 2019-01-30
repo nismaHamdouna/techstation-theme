@@ -15,6 +15,9 @@ login.bind_events = function() {
 
 	$(".btn-login").on("click", function(event) {
 		event.preventDefault();
+		var m = this;
+		$(m).css("disabled","true");
+		$(m).html('<i class="fa fa-circle-o" aria-hidden="true"></i>');
 		var args = {};
 		args.cmd = "login";
 		args.usr = frappe.utils.xss_sanitise(($("#login_email").val() || "").trim());
@@ -123,6 +126,8 @@ login.login_handlers = (function() {
 				data = xhr.responseJSON;
 			}
 
+			$(".btn-login").css("disable","false");
+			$(".btn-login").html("Login");
 			var message = default_message;
 			if (data._server_messages) {
 				message = ($.map(JSON.parse(data._server_messages || '[]'), function(v) {
@@ -145,6 +150,7 @@ login.login_handlers = (function() {
 						
 				
 			}
+
 			if(data.message == "Password reset instructions have been sent to your email"){
 						$('.success_reset').css('display','block');
 						
@@ -157,6 +163,13 @@ login.login_handlers = (function() {
 
 	var login_handlers = {
 		200: function(data) {
+		
+						$(".btn-login").css("disable","false");
+			if(data._server_messages){			
+			if( data._server_messages.includes("Password reset instructions have been sent to your email")){
+			$('.success_reset').css('display','block');
+			}
+}
 			if(data.message == 'Logged In'){
 				login.set_indicator("{{ _("Success") }}", 'green');
 				window.location.href = frappe.utils.get_url_arg("redirect-to") || data.home_page;

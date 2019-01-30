@@ -225,6 +225,13 @@ zoom: 125% !important;
 }
 .company_name {
 margin: 25px auto 0;
+width: 440px;
+}
+.company_name img {
+width: 90px;
+padding: 10px;
+opacity: .5;
+display: none;
 }
 .company_name h5 {
 font-size: 17px;

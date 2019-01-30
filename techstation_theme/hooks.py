@@ -8,7 +8,7 @@ app_publisher = "techstation"
 app_description = "techstation"
 app_icon = "techstation"
 app_color = "grey"
-app_email = "techstation"
+app_email = "info@techstation.com.eg"
 app_license = "MIT"
 
 # Includes in <head>
@@ -46,15 +46,16 @@ error_report_email = "support@techstation.com.eg"
 # application home page (will override Website Settings)
 home_page = "index"
 
-
 email_brand_image = "assets/techstation_theme/images/logo.png"
 
 default_mail_footer = """
 	<span>
-		Sent via Techstation Soft
+		Sent via
+		<a class="text-muted" href="https://www.techstation.com.eg" target="_blank">
+			Techstation Software Solutions
+		</a>
 	</span>
 """
-
 
 
 # website user home page (by Role)

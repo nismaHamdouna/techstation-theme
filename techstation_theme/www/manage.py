@@ -18,23 +18,7 @@ def get_context(context):
 	# get settings from site config
 	context.no_header = True
 	context.for_test = 'manage.html'
-	context["title"] = "Login"
-	context["provider_logins"] = []
-	context["disable_signup"] = frappe.utils.cint(frappe.db.get_value("Website Settings", "Website Settings", "disable_signup"))
-
-	for provider in ("google", "github", "facebook", "frappe"):
-		if get_oauth_keys(provider):
-			context["{provider}_login".format(provider=provider)] = get_oauth2_authorize_url(provider)
-			context["social_login"] = True
-
-
-	login_name_placeholder = [_("Email address")]
-
-	if frappe.utils.cint(frappe.get_system_settings("allow_login_using_mobile_number")):
-		login_name_placeholder.append(_("Mobile number"))
-
-	if frappe.utils.cint(frappe.get_system_settings("allow_login_using_user_name")):
-		login_name_placeholder.append(_("Username"))
+	context.title = "Login"
 	company = frappe.defaults.get_user_default('company')
 	if not company:
 		company = frappe.db.get_value("Global Defaults", "Global Defaults", "default_company")	
@@ -55,6 +39,10 @@ def validate_mail(email):
 			"email" : ee
 			}
 	else: 
-		return {"status": "error"}
+		m = frappe.db.sql('select  name ,email from tabUser where name=%s',email);
+		if m:
+			return {"status": "in_active"}
+		else:	
+			return {"status": "error"}
 
 

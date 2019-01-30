@@ -800,7 +800,7 @@ border-radius: 0.25em;
 .modal-header .close {
   margin-top: 0 !important;
   background-color: rgba(0, 0, 0, .5);
-  padding: 12px !important;
+  padding: 11.5px !important;
   color: #f7fafc;
   opacity: 10;
 }
